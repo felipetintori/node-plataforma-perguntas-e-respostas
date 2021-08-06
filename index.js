@@ -6,13 +6,15 @@ app.set('view engine', 'ejs');
 
 //Rota principal da aplicação - vai renderizar a index dentro da pasta views
 app.get("/:nome/:lang",(req, res) => {
-    var nome = "Felipe Tintori"
-    var lang ="JS"
+    var nome = req.params.nome;
+    var lang = req.params.lang;
+    var exibirMsg = false;
     res.render("index",{
         nome: nome,
         lang: lang,
         empresa: "Guia do Programador",
-        inscritos: 8000
+        inscritos: 8000,
+        msg: exibirMsg
     });
 })
 
