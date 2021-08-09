@@ -3,6 +3,7 @@ const app = express();
 
 //usar EJS como renderizador de HTML
 app.set('view engine', 'ejs');
+app.use(express.static('public'))
 
 //Rota principal da aplicação - vai renderizar a index dentro da pasta views
 app.get("/",(req, res) => {
