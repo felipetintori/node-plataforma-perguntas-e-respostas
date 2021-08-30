@@ -1,6 +1,17 @@
 const express = require("express")
 const app = express();
 const bodyParser = require("body-parser")
+const connection = require('./database/database')
+
+//Databese
+connection
+    .authenticate()
+    .then(()=>{
+        console.log("Conexão com o banco")
+    })
+    .catch((erro) => {
+        console.log(erro)
+    })
 
 //usar EJS como renderizador de HTML
 app.set('view engine', 'ejs');
