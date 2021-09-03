@@ -23,7 +23,12 @@ app.use(bodyParser.json())
 
 //Rota principal da aplicação - vai renderizar a index dentro da pasta views
 app.get("/",(req, res) => {
-    res.render("index");
+    Pergunta.findAll({raw: true}).then(perguntas => {
+        res.render("index",{
+            perguntas: perguntas
+        });
+    })
+    
 });
 
 
