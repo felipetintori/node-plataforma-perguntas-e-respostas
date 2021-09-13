@@ -22,8 +22,12 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 //Rota principal da aplicação - vai renderizar a index dentro da pasta views
+
+//order colocar ordem de ordenação do array
 app.get("/",(req, res) => {
-    Pergunta.findAll({raw: true}).then(perguntas => {
+    Pergunta.findAll({raw: true, order:[
+        ['id', 'DESC'] //Desc - ordem decrecente no id
+    ]}).then(perguntas => {
         res.render("index",{
             perguntas: perguntas
         });
