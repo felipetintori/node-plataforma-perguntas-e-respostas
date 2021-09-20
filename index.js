@@ -50,6 +50,24 @@ app.post("/salvarpergunta",(req, res) => {
         res.redirect("/")
     })
 })
+
+//Rota pergunta filtrar pelo id da pergunta
+app.get("/pergunta/:id", (req, res) => {
+   var id = req.params.id; //params 'ID' passado na URL
+   Pergunta.findOne({ 
+       where: {id: id}
+   }).then(pergunta => {
+       if(pergunta != undefined){
+        res.render("pergunta", {
+            pergunta: pergunta
+        })
+       }else{
+           res.redirect("/")
+
+       }
+   })
+   //findOne metodo do Sequelize que te retorna apenas um registro do banco
+})
 //porta localhost
 app.listen(8080, ()=>{
     console.log("App rodando !")
